@@ -20,13 +20,17 @@ import br.ce.wcaquino.taskbackend.utils.ValidationException;
 @RequestMapping(value ="/todo")
 public class TaskController {
 
+	
 	@Autowired
 	private TaskRepo todoRepo;
+	
 	
 	@GetMapping
 	public List<Task> findAll() {
 		return todoRepo.findAll();
 	}
+	
+	
 	
 	@PostMapping
 	public ResponseEntity<Task> save(@RequestBody Task todo) throws ValidationException {
@@ -42,4 +46,6 @@ public class TaskController {
 		Task saved = todoRepo.save(todo);
 		return new ResponseEntity<Task>(saved, HttpStatus.CREATED);
 	}
+	
+	
 }
